@@ -18,15 +18,14 @@ body {
     padding: 20px;
 }
 
-
 header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    margin-bottom: 30px;
-    padding: 20px;
+    margin-bottom: 22px;
+    padding: 10px 16px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     backdrop-filter: blur(10px);
@@ -286,8 +285,8 @@ textarea {
     header {
         flex-direction: column;
         align-items: stretch;
-        padding: 12px;
-        margin-bottom: 18px;
+        padding: 7px 8px;
+        margin-bottom: 12px;
     }
     header h1 {
         font-size: 1.3rem;
@@ -296,7 +295,7 @@ textarea {
     #currentBalance {
         font-size: 1rem !important;
         margin-left: 0;
-        margin-top: 6px;
+        margin-top: 4px;
         text-align: left;
     }
     .transaction-form-section,
@@ -335,7 +334,7 @@ textarea {
     header {
         flex-direction: column;
         align-items: stretch;
-        padding: 8px;
+        padding: 5px 4px;
     }
     header h1 {
         font-size: 1.1rem;
@@ -344,7 +343,7 @@ textarea {
     #currentBalance {
         font-size: 0.95rem !important;
         margin-left: 0;
-        margin-top: 5px;
+        margin-top: 3px;
         text-align: left;
     }
     .transaction-form-section,
