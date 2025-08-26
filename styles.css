@@ -158,15 +158,14 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
-
 header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 22px;
-    padding: 10px 16px;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 10px;
+    padding: 4px 8px 4px 8px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     backdrop-filter: blur(10px);
@@ -175,20 +174,19 @@ header {
     box-sizing: border-box;
 }
 
-
 header h1 {
     color: white;
-    font-size: 2.2rem;
+    font-size: 1.15rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin: 0;
     flex: 1 1 180px;
     min-width: 0;
     overflow-wrap: break-word;
     word-break: break-word;
+    line-height: 1.15;
 }
-
 #currentBalance {
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
     font-weight: bold;
     min-width: 120px;
     max-width: 100%;
@@ -196,7 +194,13 @@ header h1 {
     word-break: break-word;
     overflow-wrap: break-word;
     flex: 0 1 180px;
-    margin-left: 10px;
+    margin-left: 0;
+    margin-top: 0.1em;
+    line-height: 1.2;
+    align-self: flex-end;
+    display: block;
+    padding: 0.1em 0 0 0;
+    white-space: pre-line;
 }
 
 main {
@@ -426,18 +430,22 @@ textarea {
     header {
         flex-direction: column;
         align-items: stretch;
-        padding: 7px 8px;
-        margin-bottom: 12px;
+        padding: 5px 4px;
+        margin-bottom: 8px;
     }
     header h1 {
-        font-size: 1.3rem;
+        font-size: 1.08rem;
         text-align: left;
+        line-height: 1.13;
     }
     #currentBalance {
-        font-size: 1rem !important;
+        font-size: 0.97rem !important;
         margin-left: 0;
-        margin-top: 4px;
+        margin-top: 0.1em;
         text-align: left;
+        line-height: 1.18;
+        padding: 0.1em 0 0 0;
+        white-space: pre-line;
     }
     .transaction-form-section,
     .transactions-section {
