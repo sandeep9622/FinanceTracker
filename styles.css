@@ -179,13 +179,12 @@ header h1 {
     font-size: 1.15rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin: 0;
-    flex: 1 1 180px;
     min-width: 0;
     overflow-wrap: break-word;
     word-break: break-word;
     line-height: 1.15;
 }
-#currentBalance {
+ #currentBalance {
     font-size: 1rem !important;
     font-weight: bold;
     min-width: 120px;
@@ -193,13 +192,12 @@ header h1 {
     text-align: right;
     word-break: break-word;
     overflow-wrap: break-word;
-    flex: 0 1 180px;
     margin-left: 0;
-    margin-top: 0.1em;
-    line-height: 1.2;
+    margin-top: 0;
+    line-height: 1.1;
     align-self: flex-end;
     display: block;
-    padding: 0.1em 0 0 0;
+    padding: 0;
     white-space: pre-line;
 }
 
