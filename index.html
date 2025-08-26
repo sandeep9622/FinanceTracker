@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <h1 style="margin: 0;">Transaction Tracker</h1>
+            <div id="currentBalance" style="font-size: 1.3rem; font-weight: bold; min-width: 180px; text-align: right;"></div>
+        </header>
+
+        <main>
+            <section class="transaction-form-section">
+                <h2>Add Transaction</h2>
+                <form id="transactionForm" class="transaction-form">
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amount">Amount:</label>
+                        <input type="number" id="amount" step="0.01" required placeholder="Enter amount">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="type">Type:</label>
+                        <select id="type" required>
+                            <option value="credit">Credit</option>
+                            <option value="debit">Debit</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="categoryGroup">
+                        <label for="category">Category:</label>
+                        <select id="category">
+                            <option value="">Select category</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="dinner">Dinner</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="remarks">Remarks:</label>
+                        <textarea id="remarks" placeholder="Optional remarks"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Transaction</button>
+                </form>
+            </section>
+
+            <section class="transactions-section">
+                <div class="section-header">
+                    <h2>Recent Transactions</h2>
+                    <div class="date-filter">
+                        <label for="dateRange">Show transactions from:</label>
+                        <select id="dateRange">
+                            <option value="7">Last 7 days</option>
+                            <option value="30">Last 30 days</option>
+                            <option value="90">Last 90 days</option>
+                            <option value="365">Last year</option>
+                            <option value="all">All time</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="transactions-table-container">
+                    <table id="transactionsTable" class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Type</th>
+                                <th>Category</th>
+                                <th>Remarks</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsBody"></tbody>
+                    </table>
+                    <div id="noTransactions" class="no-transactions">No transactions found</div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="backupBtn" class="btn btn-secondary">Backup Data</button>
+                    <button id="restoreBtn" class="btn btn-secondary">Restore Data</button>
+                    <button id="clearBtn" class="btn btn-danger">Clear All Data</button>
+                </div>
+            </section>
+        </main>
+
+        <input type="file" id="restoreFile" accept=".json" style="display: none;">
+    </div>
+
+    <script src="lib/date-utils.js"></script>
+    <script src="lib/storage-service.js"></script>
+    <script src="lib/transaction-service.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
