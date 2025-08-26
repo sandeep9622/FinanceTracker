@@ -18,20 +18,45 @@ body {
     padding: 20px;
 }
 
+
 header {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 30px;
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 0;
+    box-sizing: border-box;
 }
+
 
 header h1 {
     color: white;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    flex: 1 1 180px;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+#currentBalance {
+    font-size: 1.1rem !important;
+    font-weight: bold;
+    min-width: 120px;
+    max-width: 100%;
+    text-align: right;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    flex: 0 1 180px;
+    margin-left: 10px;
 }
 
 main {
@@ -255,49 +280,48 @@ textarea {
         background: #6a11cb;
         padding: 10px;
     }
-    
     .container {
         padding: 10px;
     }
-
     header {
-        padding: 15px;
-        margin-bottom: 20px;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+        margin-bottom: 18px;
     }
-
     header h1 {
-        font-size: 2rem;
+        font-size: 1.3rem;
+        text-align: left;
     }
-
+    #currentBalance {
+        font-size: 1rem !important;
+        margin-left: 0;
+        margin-top: 6px;
+        text-align: left;
+    }
     .transaction-form-section,
     .transactions-section {
-        padding: 20px;
+        padding: 16px;
         border-radius: 12px;
     }
-
     .section-header {
         flex-direction: column;
         align-items: stretch;
     }
-
     .date-filter {
         flex-direction: column;
         align-items: stretch;
     }
-
     .transactions-table {
         font-size: 14px;
     }
-
     .transactions-table th,
     .transactions-table td {
         padding: 8px;
     }
-
     .action-buttons {
         flex-direction: column;
     }
-
     .btn {
         width: 100%;
         margin: 5px 0;
@@ -308,24 +332,28 @@ textarea {
     .container {
         padding: 5px;
     }
-
     header {
-        padding: 10px;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 8px;
     }
-
     header h1 {
-        font-size: 1.8rem;
+        font-size: 1.1rem;
+        text-align: left;
     }
-
+    #currentBalance {
+        font-size: 0.95rem !important;
+        margin-left: 0;
+        margin-top: 5px;
+        text-align: left;
+    }
     .transaction-form-section,
     .transactions-section {
-        padding: 15px;
+        padding: 10px;
     }
-
     h2 {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
-    
     .btn {
         padding: 10px 20px;
         font-size: 14px;
