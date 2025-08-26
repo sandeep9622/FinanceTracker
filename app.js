@@ -1,3 +1,43 @@
+// --- Custom Toaster & Modal Implementation ---
+function showToast(message, duration = 3500) {
+    const toaster = document.getElementById('customToaster');
+    if (!toaster) return;
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    toaster.appendChild(toast);
+    setTimeout(() => {
+        toast.classList.add('toast-out');
+        toast.addEventListener('animationend', () => {
+            toast.remove();
+        });
+    }, duration);
+}
+
+function showModal(message, onConfirm, onCancel) {
+    const modal = document.getElementById('customModal');
+    if (!modal) return;
+    modal.style.display = 'flex';
+    modal.querySelector('.modal-message').textContent = message;
+    // Remove previous listeners
+    const confirmBtn = modal.querySelector('.modal-confirm');
+    const cancelBtn = modal.querySelector('.modal-cancel');
+    const closeBtn = modal.querySelector('.modal-close');
+    const cleanup = () => {
+        modal.style.display = 'none';
+        confirmBtn.onclick = null;
+        cancelBtn.onclick = null;
+        closeBtn.onclick = null;
+        modal.onkeydown = null;
+    };
+    confirmBtn.onclick = () => { cleanup(); if (onConfirm) onConfirm(); };
+    cancelBtn.onclick = () => { cleanup(); if (onCancel) onCancel(); };
+    closeBtn.onclick = () => { cleanup(); if (onCancel) onCancel(); };
+    // ESC key closes modal
+    modal.onkeydown = (e) => { if (e.key === 'Escape') { cleanup(); if (onCancel) onCancel(); } };
+    setTimeout(() => { confirmBtn.focus(); }, 200);
+}
+
 class TransactionTrackerApp {
     constructor() {
         this.storageService = StorageService;
@@ -76,7 +116,7 @@ class TransactionTrackerApp {
 
         const errors = this.transactionService.validateTransaction(formData);
         if (errors.length > 0) {
-            alert('Please fix the following errors:\n' + errors.join('\n'));
+            showToast('Please fix the following errors:\n' + errors.join('\n'));
             return;
         }
 
@@ -163,7 +203,7 @@ class TransactionTrackerApp {
     }
 
     deleteTransaction(id) {
-        if (confirm('Are you sure you want to delete this transaction?')) {
+        showModal('Are you sure you want to delete this transaction?', () => {
             this.transactionService.deleteTransaction(id);
             this.renderTransactions();
             // Update balance after deletion
@@ -175,13 +215,13 @@ class TransactionTrackerApp {
             });
             const balance = credit - debit;
             this.updateBalanceDisplay(balance);
-        }
+        });
     }
 
     backupData() {
         const transactions = this.transactionService.getAllTransactions();
         if (transactions.length === 0) {
-            alert('No transactions to backup');
+            showToast('No transactions to backup');
             return;
         }
 
@@ -233,14 +273,14 @@ class TransactionTrackerApp {
                     throw new Error('Invalid data format');
                 }
 
-                if (confirm('This will replace all current transactions. Continue?')) {
+                showModal('This will replace all current transactions. Continue?', () => {
                     this.storageService.saveTransactions(transactions);
                     this.transactionService.initialize();
                     this.renderTransactions();
-                    alert('Data restored successfully');
-                }
+                    showToast('Data restored successfully');
+                });
             } catch (error) {
-                alert('Error restoring data: ' + error.message);
+                showToast('Error restoring data: ' + error.message);
             }
         };
         reader.readAsText(file);
@@ -250,21 +290,19 @@ class TransactionTrackerApp {
     clearAllData() {
         const transactions = this.transactionService.getAllTransactions();
         if (transactions.length === 0) {
-            alert('No data to clear');
+            showToast('No data to clear');
             return;
         }
 
-        if (!confirm('WARNING: This will permanently delete all transactions. Download backup first?')) {
+        showModal('WARNING: This will permanently delete all transactions. Download backup first?', () => {
             this.backupData();
-        }
-
-        if (confirm('Are you absolutely sure you want to clear ALL data? This cannot be undone.')) {
-            this.transactionService.clearAllTransactions();
-            this.renderTransactions();
-            // Update balance after clearing
-            this.updateBalanceDisplay(0);
-            alert('All data cleared successfully');
-        }
+            showModal('Are you absolutely sure you want to clear ALL data? This cannot be undone.', () => {
+                this.transactionService.clearAllTransactions();
+                this.renderTransactions();
+                this.updateBalanceDisplay(0);
+                showToast('All data cleared successfully');
+            });
+        });
     }
 }
 

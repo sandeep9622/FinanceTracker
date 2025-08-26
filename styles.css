@@ -1,3 +1,144 @@
+/* --- Custom Toaster Styles --- */
+#customToaster {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+    max-width: 90vw;
+}
+
+.toast {
+    background: linear-gradient(90deg, #6a11cb 60%, #2575fc 100%);
+    color: #fff;
+    padding: 16px 28px 16px 18px;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(31,38,135,0.25);
+    font-size: 1.08rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-40px) scale(0.95) rotate(-2deg);
+    animation: toastIn 0.7s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+    pointer-events: auto;
+    min-width: 180px;
+    max-width: 350px;
+    word-break: break-word;
+    position: relative;
+}
+.toast.toast-out {
+    animation: toastOut 0.5s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+}
+@keyframes toastIn {
+    0% { opacity: 0; transform: translateY(-40px) scale(0.95) rotate(-2deg); }
+    60% { opacity: 1; transform: translateY(8px) scale(1.05) rotate(1deg); }
+    100% { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+}
+@keyframes toastOut {
+    0% { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+    100% { opacity: 0; transform: translateY(-40px) scale(0.95) rotate(-2deg); }
+}
+
+/* --- Custom Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(40, 40, 60, 0.32);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: modalFadeIn 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+}
+.modal-content {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(31,38,135,0.18);
+    padding: 32px 22px 22px 22px;
+    min-width: 270px;
+    max-width: 92vw;
+    position: relative;
+    animation: modalPopIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.modal-message {
+    font-size: 1.13rem;
+    color: #2c3e50;
+    margin-bottom: 22px;
+    text-align: center;
+    word-break: break-word;
+}
+.modal-actions {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    justify-content: center;
+}
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 1.7rem;
+    color: #6a11cb;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    padding: 2px 8px 2px 8px;
+    z-index: 2;
+}
+.modal-close:hover, .modal-close:focus {
+    background: #f0e9ff;
+    color: #2575fc;
+    transform: scale(1.18) rotate(8deg);
+}
+.modal-confirm {
+    background: linear-gradient(90deg, #6a11cb 60%, #2575fc 100%);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-size: 1.08rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(106,17,203,0.13);
+    transition: background 0.2s, transform 0.2s;
+}
+.modal-confirm:hover, .modal-confirm:focus {
+    background: linear-gradient(90deg, #2575fc 60%, #6a11cb 100%);
+    transform: scale(1.07);
+}
+.modal-cancel {
+    background: #f0e9ff;
+    color: #6a11cb;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 1.08rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(106,17,203,0.09);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.modal-cancel:hover, .modal-cancel:focus {
+    background: #e0d6fa;
+    color: #2575fc;
+    transform: scale(1.07);
+}
+@keyframes modalFadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes modalPopIn {
+    0% { opacity: 0; transform: scale(0.7) rotate(-8deg); }
+    60% { opacity: 1; transform: scale(1.08) rotate(2deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0); }
+}
 * {
     margin: 0;
     padding: 0;
