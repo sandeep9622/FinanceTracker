@@ -158,7 +158,6 @@ class TransactionTrackerApp {
             return `
             <tr>
                 <td>${this.formatDisplayDate(transaction.date)}</td>
-<td>${days[transaction.date.getDay()]}</td>
                 <td class="${amountClass}">
                     ${sign}${transaction.amount.toFixed(2)}
                 </td>
