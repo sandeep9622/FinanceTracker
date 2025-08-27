@@ -1,6 +1,6 @@
 {
   "name": "Finance Tracker",
-  "short_name": "FinanceTracker",
+  "short_name": "Finance Tracker",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
