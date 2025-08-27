@@ -1,3 +1,4 @@
+const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 // --- Custom Toaster & Modal Implementation ---
 function showToast(message, duration = 3500) {
     const toaster = document.getElementById('customToaster');
@@ -157,7 +158,7 @@ class TransactionTrackerApp {
             return `
             <tr>
                 <td>${this.formatDisplayDate(transaction.date)}</td>
-<td>${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][transaction.date.getDay()]}</td>
+<td>${days[transaction.date.getDay()]}</td>
                 <td class="${amountClass}">
                     ${sign}${transaction.amount.toFixed(2)}
                 </td>
