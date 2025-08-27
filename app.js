@@ -155,9 +155,13 @@ class TransactionTrackerApp {
             const isDebit = transaction.type === 'debit';
             const sign = isDebit ? '-' : '+';
             const amountClass = isDebit ? 'amount-negative' : 'amount-positive';
+            // Calculate day of week from date
+            const dateObj = new Date(transaction.date);
+            const dayOfWeek = dateObj.toLocaleDateString(undefined, { weekday: 'long' });
             return `
             <tr>
                 <td>${this.formatDisplayDate(transaction.date)}</td>
+                <td>${dayOfWeek}</td>
                 <td class="${amountClass}">
                     ${sign}${transaction.amount.toFixed(2)}
                 </td>
