@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaction Tracker</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1976d2">
+    <link rel="icon" sizes="192x192" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
 <body>
     <div id="customToaster"></div>
@@ -109,9 +113,16 @@
         <input type="file" id="restoreFile" accept=".json" style="display: none;">
     </div>
 
-    <script src="lib/date-utils.js"></script>
-    <script src="lib/storage-service.js"></script>
-    <script src="lib/transaction-service.js"></script>
-    <script src="app.js"></script>
+        <script src="lib/date-utils.js"></script>
+        <script src="lib/storage-service.js"></script>
+        <script src="lib/transaction-service.js"></script>
+        <script src="app.js"></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('service-worker.js');
+                });
+            }
+        </script>
 </body>
 </html>
