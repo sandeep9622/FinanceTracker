@@ -157,6 +157,7 @@ class TransactionTrackerApp {
             return `
             <tr>
                 <td>${this.formatDisplayDate(transaction.date)}</td>
+<td>${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][transaction.date.getDay()]}</td>
                 <td class="${amountClass}">
                     ${sign}${transaction.amount.toFixed(2)}
                 </td>
