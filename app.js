@@ -98,6 +98,7 @@ class TransactionTrackerApp {
 
     handleTypeChange() {
         const isDebit = this.typeSelect.value === 'debit';
+        const isCredit = this.typeSelect.value === 'credit';
         this.categoryGroup.style.display = isDebit ? 'block' : 'none';
         if (isDebit) {
             const now = new Date();
@@ -111,8 +112,13 @@ class TransactionTrackerApp {
                 category = 'lunch';
             }
             this.categorySelect.value = category;
+            this.remarksInput.value = '';
+        } else if (isCredit) {
+            this.categorySelect.value = '';
+            this.remarksInput.value = 'cash deposit';
         } else {
             this.categorySelect.value = '';
+            this.remarksInput.value = '';
         }
     }
 
