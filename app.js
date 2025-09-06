@@ -1,4 +1,4 @@
-const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 // --- Custom Toaster & Modal Implementation ---
 function showToast(message, duration = 3500) {
     const toaster = document.getElementById('customToaster');
@@ -64,6 +64,7 @@ class TransactionTrackerApp {
         this.restoreBtn = document.getElementById('restoreBtn');
         this.restoreFileInput = document.getElementById('restoreFile');
         this.clearBtn = document.getElementById('clearBtn');
+        this.downloadExcelBtn = document.getElementById('downloadExcelBtn');
     }
 
     initializeEventListeners() {
@@ -74,6 +75,40 @@ class TransactionTrackerApp {
         this.restoreBtn.addEventListener('click', () => this.restoreData());
         this.restoreFileInput.addEventListener('change', (e) => this.handleFileUpload(e));
         this.clearBtn.addEventListener('click', () => this.clearAllData());
+        if (this.downloadExcelBtn) {
+            this.downloadExcelBtn.addEventListener('click', () => this.downloadTableAsCSV());
+        }
+
+    }
+
+    downloadTableAsCSV() {
+        // Get header row from thead
+        const headerRow = document.querySelector('#transactionsTable thead tr');
+        const headerCells = Array.from(headerRow.querySelectorAll('th'));
+        const headers = headerCells.slice(0, -1).map(cell => cell.innerText.trim());
+        let csvContent = '';
+        csvContent += headers.join(',') + '\n';
+        // Get data rows from tbody
+        const rows = Array.from(this.transactionsBody.querySelectorAll('tr'));
+        if (rows.length === 0) {
+            showToast('No transactions to download.');
+            return;
+        }
+        for (let i = 0; i < rows.length; i++) {
+            const cells = Array.from(rows[i].querySelectorAll('td')).slice(0, -1).map(cell => '"' + cell.innerText.replace(/"/g, '""') + '"');
+            csvContent += cells.join(',') + '\n';
+        }
+        // Get filter text
+        const filterText = this.dateRangeSelect.options[this.dateRangeSelect.selectedIndex].text;
+        const filename = `Food Transactions ${filterText}.csv`;
+        // Download
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
     }
 
     initializeApp() {
@@ -251,7 +286,7 @@ class TransactionTrackerApp {
         const data = this.storageService.exportToJSON(transactions);
         const blob = new Blob([data], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
-        
+
         const a = document.createElement('a');
         a.href = url;
         a.download = `transactions-backup-${DateUtils.formatDate(new Date())}.json`;
@@ -291,7 +326,7 @@ class TransactionTrackerApp {
         reader.onload = (e) => {
             try {
                 const transactions = this.storageService.importFromJSON(e.target.result);
-                
+
                 if (!Array.isArray(transactions)) {
                     throw new Error('Invalid data format');
                 }
@@ -332,7 +367,7 @@ class TransactionTrackerApp {
 // Initialize the application
 const app = new TransactionTrackerApp();
 // Ensure balance is shown on page load (in case renderTransactions is not called yet)
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
     if (app && typeof app.updateBalanceDisplay === 'function') {
         const allTransactions = app.transactionService.getAllTransactions();
         let credit = 0, debit = 0;
