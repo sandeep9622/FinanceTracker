@@ -99,7 +99,19 @@ class TransactionTrackerApp {
     handleTypeChange() {
         const isDebit = this.typeSelect.value === 'debit';
         this.categoryGroup.style.display = isDebit ? 'block' : 'none';
-        if (!isDebit) {
+        if (isDebit) {
+            const now = new Date();
+            const hour = now.getHours();
+            let category = '';
+            if (hour < 12) {
+                category = 'breakfast';
+            } else if (hour > 16) {
+                category = 'dinner';
+            } else {
+                category = 'lunch';
+            }
+            this.categorySelect.value = category;
+        } else {
             this.categorySelect.value = '';
         }
     }
