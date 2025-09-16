@@ -426,8 +426,9 @@ textarea {
         padding: 10px;
     }
     header {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;
+        align-items: left;
+        justify-content: space-between;
         padding: 5px 4px;
         margin-bottom: 8px;
     }
@@ -440,7 +441,7 @@ textarea {
         font-size: 0.97rem !important;
         margin-left: 0;
         margin-top: 0.1em;
-        text-align: left;
+        text-align: right;
         line-height: 1.18;
         padding: 0.1em 0 0 0;
         white-space: pre-line;
@@ -479,8 +480,9 @@ textarea {
         padding: 5px;
     }
     header {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;
+        align-items: left;
+        justify-content: space-between;
         padding: 5px 4px;
     }
     header h1 {
@@ -491,7 +493,7 @@ textarea {
         font-size: 0.95rem !important;
         margin-left: 0;
         margin-top: 3px;
-        text-align: left;
+        text-align: right;
     }
     .transaction-form-section,
     .transactions-section {
