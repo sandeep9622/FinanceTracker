@@ -1,4 +1,9 @@
 /* --- Custom Toaster Styles --- */
+#customToaster {}
+
+.is-hidden {
+    display: none !important;
+}
 #customToaster {
     position: fixed;
     top: 24px;
@@ -179,15 +184,16 @@ header h1 {
     font-size: 1.15rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin: 0;
+    flex: 1 1 auto;
     min-width: 0;
     overflow-wrap: break-word;
     word-break: break-word;
     line-height: 1.15;
 }
  #currentBalance {
-    font-size: 1rem !important;
+    font-size: 1.3rem !important;
     font-weight: bold;
-    min-width: 120px;
+    min-width: 180px;
     max-width: 100%;
     text-align: right;
     word-break: break-word;

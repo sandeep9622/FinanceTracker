@@ -18,14 +18,14 @@ function showToast(message, duration = 3500) {
 function showModal(message, onConfirm, onCancel) {
     const modal = document.getElementById('customModal');
     if (!modal) return;
-    modal.style.display = 'flex';
+    modal.classList.remove('is-hidden');
     modal.querySelector('.modal-message').textContent = message;
     // Remove previous listeners
     const confirmBtn = modal.querySelector('.modal-confirm');
     const cancelBtn = modal.querySelector('.modal-cancel');
     const closeBtn = modal.querySelector('.modal-close');
     const cleanup = () => {
-        modal.style.display = 'none';
+        modal.classList.add('is-hidden');
         confirmBtn.onclick = null;
         cancelBtn.onclick = null;
         closeBtn.onclick = null;

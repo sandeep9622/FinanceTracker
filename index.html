@@ -12,7 +12,7 @@
 </head>
 <body>
     <div id="customToaster"></div>
-    <div id="customModal" class="modal-overlay" style="display:none;">
+    <div id="customModal" class="modal-overlay is-hidden">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close">&times;</button>
             <div class="modal-message"></div>
@@ -23,9 +23,9 @@
         </div>
     </div>
     <div class="container">
-        <header style="display: flex; justify-content: space-between;">
-            <h1 style="margin: 0; flex-grow: 1;">Transaction Tracker</h1>
-            <div id="currentBalance" style="font-size: 1.3rem; font-weight: bold; min-width: 180px;"></div>
+        <header>
+            <h1>Transaction Tracker</h1>
+            <div id="currentBalance"></div>
         </header>
 
         <main>
@@ -111,7 +111,7 @@
             </section>
         </main>
 
-        <input type="file" id="restoreFile" accept=".json" style="display: none;">
+        <input type="file" id="restoreFile" accept=".json" class="is-hidden">
     </div>
 
         <script src="lib/date-utils.js"></script>
