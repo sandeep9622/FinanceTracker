@@ -427,7 +427,7 @@ textarea {
     }
     header {
         flex-direction: row;
-        align-items: left;
+        align-items: center;
         justify-content: space-between;
         padding: 5px 4px;
         margin-bottom: 8px;
@@ -481,7 +481,7 @@ textarea {
     }
     header {
         flex-direction: row;
-        align-items: left;
+        align-items: center;
         justify-content: space-between;
         padding: 5px 4px;
     }
