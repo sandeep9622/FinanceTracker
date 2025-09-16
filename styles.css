@@ -193,7 +193,7 @@ header h1 {
  #currentBalance {
     font-size: 1.3rem !important;
     font-weight: bold;
-    min-width: 180px;
+    /* min-width: 180px; */
     max-width: 100%;
     text-align: right;
     word-break: break-word;
