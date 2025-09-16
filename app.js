@@ -248,7 +248,17 @@ class TransactionTrackerApp {
             color = `rgb(${intensity},0,0)`;
             bg = `rgba(${intensity},0,0,0.08)`;
         }
-        this.balanceDisplay.innerHTML = `Balance: <span style="color:${color};background:${bg};padding:2px 10px;border-radius:8px;">&#8377; ${balance.toFixed(2)}</span>`;
+        
+        // SVG wallet icon with same color as balance
+        const walletIcon = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="${bg}" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                <path d="M19 7H5C3.89543 7 3 7.89543 3 9V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V9C21 7.89543 20.1046 7 19 7Z" stroke="${color}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 11V13" stroke="${color}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 9L12 4L21 9" stroke="${color}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        `;
+        
+        this.balanceDisplay.innerHTML = `${walletIcon}  <span style="color:${color};background:${bg};padding:2px 10px;border-radius:8px;"> : &#8377; ${balance.toFixed(2)}</span>`;
     }
 
     formatDisplayDate(dateString) {
